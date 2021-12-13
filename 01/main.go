@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"strconv"
 
 	"github.com/gnaydenova/aoc/pkg/flags"
@@ -19,19 +18,14 @@ func main() {
 
 func partOne(measurements []string) {
 	count := 0
-	prev := 0
 
+	var prev *int
 	for _, line := range measurements {
-		curr, err := strconv.Atoi(line)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		if prev > 0 && curr > prev {
+		curr, _ := strconv.Atoi(line)
+		if prev != nil && curr > *prev {
 			count++
 		}
-
-		prev = curr
+		prev = &curr
 	}
 
 	fmt.Println(count)
@@ -39,14 +33,14 @@ func partOne(measurements []string) {
 
 func partTwo(measurements []string) {
 	count := 0
-	prev := 0
 
+	var prev *int
 	for i := 0; i < len(measurements); i++ {
 		curr := sum(measurements[i : i+3])
-		if prev > 0 && curr > prev {
+		if prev != nil && curr > *prev {
 			count++
 		}
-		prev = curr
+		prev = &curr
 	}
 
 	fmt.Println(count)
