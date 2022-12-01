@@ -2,9 +2,29 @@ package flags
 
 import "flag"
 
-func File () string {
-	fileName := flag.String("file", "input", "input file name")
-	flag.Parse()
+var (
+	fileName string
+	part int
+)
 
-	return *fileName
+func File() string {
+	initFlags()
+
+	return fileName
+}
+
+func Part() int {
+	initFlags()
+
+	return part
+}
+
+func initFlags() {
+	if flag.Parsed() {
+		return 
+	}
+
+	flag.StringVar(&fileName, "file", "input", "input file name")
+	flag.IntVar(&part, "part", 1, "part")
+	flag.Parse()
 }
