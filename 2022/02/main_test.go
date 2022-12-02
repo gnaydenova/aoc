@@ -12,8 +12,8 @@ func TestMain(t *testing.T) {
 		part     int
 		expected string
 	}{
-		{1, "24000"},
-		{2, "45000"},
+		{1, "15"},
+		{2, "12"},
 	}
 
 	for _, testCase := range testCases {
